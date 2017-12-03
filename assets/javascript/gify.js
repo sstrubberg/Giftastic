@@ -15,5 +15,13 @@ function searchGIFY(starWarsThingName) {
     })
     .done(function(response) {
         console.log(response);
+        displayGifs(response);
     })
+}
+
+function displayGifs(response) {
+    for (var i = 0; i < response.data.length; i++) {
+        var image = "<img src= " + response.data[i].images.fixed_height_small.url + ">";
+        $("#star-wars-things").append(image);
+    }
 }
