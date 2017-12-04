@@ -8,20 +8,35 @@ $(document).ready(function() {
     }
 });
 
+// AJAX call
 function searchGIFY(starWarsThingName) {
     $.ajax({
         url: "https://api.giphy.com/v1/gifs/search?q= " + starWarsThingName + " &api_key=WoKz7UsHBnDyewFCHSNpZPMWvjPsBzZ0&limit=10",
         method: "GET",
     })
     .done(function(response) {
-        console.log(response);
         displayGifs(response);
     })
 }
 
+//Dumping the images into a div.
+
 function displayGifs(response) {
+    $("#star-wars-things").empty();
     for (var i = 0; i < response.data.length; i++) {
-        var image = "<img src= " + response.data[i].images.fixed_height_small.url + ">";
+        var rating = "<div class='rating'>Rating: " + response.data[i].rating + "</div>"
+        var image = rating + 
+        "<img src='" + response.data[i].images.fixed_width_still.url +
+        " 'image-still='" + response.data[i].images.fixed_width_still.url +
+        " 'image-animated='" + response.data[i].images.fixed_width.url +
+        " 'image-state='still' class='alterImage'>";
         $("#star-wars-things").append(image);
     }
+
+    $(".alterImage").on("click", function() {
+        var state = $(this).attr("image-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("image-animated"));
+        }
+    });
 }
