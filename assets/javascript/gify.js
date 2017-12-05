@@ -4,9 +4,13 @@ var topics = ["X-Wing", "Tie-fighter", "B-Wing", "A-wing", "Tie-defender", "Mill
 //Make the buttons on the page from the topics variable.
 $(document).ready(function() {
     for (var i = 0;  i < topics.length; i++) {
-        $("#sw-buttons").append("<button type='button' onclick='searchGIFY(\"" + topics[i] + "\")' class='btn btn-primary' value=' " + topics[i] + "'>" + topics[i] + "</button>");
+        $("#sw-buttons").append("<button type='button' onclick='searchGIFY(\"" + topics[i] + "\")' class='btn btn-default' value=' " + topics[i] + "'>" + topics[i] + "</button>");
     }
 });
+
+function submitButtonClicked() {
+    
+}
 
 // AJAX call
 function searchGIFY(starWarsThingName) {
@@ -33,10 +37,15 @@ function displayGifs(response) {
         $("#star-wars-things").append(image);
     }
 
+// Pausing and unpausing the gifys
     $(".alterImage").on("click", function() {
         var state = $(this).attr("image-state");
         if (state === "still") {
             $(this).attr("src", $(this).attr("image-animated"));
+            $(this).attr("image-state", "animated");
+        } else {
+            $(this).attr("src", $(this).attr("image-still"));
+            $(this).attr("image-state", "still");    
         }
     });
 }

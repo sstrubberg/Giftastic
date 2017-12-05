@@ -26,11 +26,19 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1 class="">StarWars Things!</h1>
+            <h1 class="text-center">StarWars Things!</h1>
             <div id="sw-buttons"></div>
         </div>
+    
+        <div class="container">
+            <form id="sw-form">
+                <label>Enter Your Favorite Star Wars Things</label>
+                <input type="text" class="form-control">
+            </form>
+            <button onclick="submitButtonClicked()" class="btn btn-success">Submit</button>
+        </div>
+        <div id="star-wars-things"></div>
     </div>
-    <div id="star-wars-things"></div>
 
 <script src="assets/javascript/gify.js"></script>
 
